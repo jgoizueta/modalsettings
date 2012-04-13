@@ -1,0 +1,58 @@
+=Settings
+
+Settings container, supporting nested settings.
+
+Properties can be set from a hash with either String or Symbol keys.
+
+  s = Settings[:a=>1, 'b'=>2]
+
+Properties can be accessed as attributes or as indices (String or Symbol).
+
+  puts s.a
+  puts s[:a]
+  puts s['a']
+
+Properties are writable
+
+  s.a = 100
+  s[:a] = 100
+  s['a'] = 100
+
+Nested hashes are accessed as Settings too.
+
+  s = Setings[:a=>1, :email=>{:from=>'a', :to=>'b'}]
+  puts s.email.a
+
+Can be converted to a Hash
+
+ puts s.to_h.inspect
+
+Converts to YAML as a Hash
+
+ puts s.to_yaml
+
+Undefined parameters can be read (and return nil)
+
+ puts s.x
+
+Settings can be merged
+
+  s2 = s.merge(:z=>100)
+
+Note that properties with names corresponding to Object methods cannot be accessed with the s.x syntax:
+
+  s = Settings[:object_id=>100]
+  puts s.object_id   # this is not the setting!
+  puts s[:object_id] # => 100
+  s.object_id = 200  # this changes the setting
+  puts s[:object_id] # => 200
+
+To know which current settings need s[] syntax use the collisions method:
+
+ s = Settings[:object_id=>1]
+ s.collisions # [:object_id]
+
+To check for collisions recursively:
+
+ s = Settings[:object_id=>{:to_h=>1, :x=>2}]
+ s.collisions(true) # [:object_id, [:object_id, :to_h]]

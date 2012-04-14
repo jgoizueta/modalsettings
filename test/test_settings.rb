@@ -1,6 +1,12 @@
-require 'test_helper'
+require 'helper'
 
-class SettingsTest < ActiveSupport::TestCase
+class SettingsTest < Test::Unit::TestCase
+
+  def setup
+    @tmp_dir = File.join(File.dirname(__FILE__), "tmp")
+    FileUtils.mkdir_p @tmp_dir
+  end
+
 
   def test_simple_settings
     s = Settings[:a=>1, 'b'=>2, :x=>'xyz', :y=>[1,2,3]]
@@ -124,7 +130,7 @@ class SettingsTest < ActiveSupport::TestCase
   end
 
   def test_yaml_load
-    File.open(fn=File.join(Rails.root, 'tmp', 'settings_test.yml'), 'w') do |file|
+    File.open(fn=File.join(@tmp_dir, 'settings_test.yml'), 'w') do |file|
       file.write({:a=>1, 'b'=>2, :x=>'xyz', :y=>[1,2,3]}.to_yaml)
     end
     s = Settings.load(fn)
@@ -152,7 +158,7 @@ class SettingsTest < ActiveSupport::TestCase
       :x: xyz
       :y: <%= (1..3).to_a.inspect %>
     }
-    File.open(fn=File.join(Rails.root, 'tmp', 'settings_test.yml'), 'w') do |file|
+    File.open(fn=File.join(@tmp_dir, 'settings_test.yml'), 'w') do |file|
       file.write yml
     end
     s = Settings.load(fn)
@@ -183,7 +189,7 @@ class SettingsTest < ActiveSupport::TestCase
         a: 100
         z: 200
     }
-    File.open(fn=File.join(Rails.root, 'tmp', 'settings_test.yml'), 'w') do |file|
+    File.open(fn=File.join(@tmp_dir, 'settings_test.yml'), 'w') do |file|
       file.write yml
     end
     s = Settings.load(fn, 'test')

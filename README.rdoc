@@ -1,4 +1,4 @@
-=Settings
+= ModalSettings
 
 Settings container, supporting nested settings.
 
@@ -56,3 +56,9 @@ To check for collisions recursively:
 
  s = Settings[:object_id=>{:to_h=>1, :x=>2}]
  s.collisions(true) # [:object_id, [:object_id, :to_h]]
+
+== Copyright
+
+Copyright (c) 2012 Javier Goizueta. See LICENSE.txt for
+further details.
+

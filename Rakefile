@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "modalsettings"
   gem.homepage = "http://github.com/jgoizueta/modalsettings"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Settings container}
+  gem.description = %Q{Settings container, supporting nested settings}
   gem.email = "jgoizueta@gmail.com"
   gem.authors = ["Javier Goizueta"]
   # dependencies defined in Gemfile

@@ -16,7 +16,10 @@ class Settings < OpenStruct
     #   s = Settings[:x=>100, :y=>200]
     #
     def [](settings={})
-      ModalSupport.recursive_map(settings){|v| v.kind_of?(Hash) ? Settings.new(v) : v}
+      ModalSupport.recursive_map(settings){|v|
+        # We keep hashes with keys other than strings/symbols as hashe
+        (v.kind_of?(Hash) && !v.keys.detect{|k| !k.respond_to?(:to_sym)}) ? Settings.new(v) : v
+      }
     end
 
     # Build a Settings from a YAML file defining a properties Hash. The YAML can include ERB macros.

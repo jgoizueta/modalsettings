@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "modalsettings"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
-  s.date = "2012-04-14"
+  s.date = "2013-05-07"
   s.description = "Settings container, supporting nested settings"
   s.email = "jgoizueta@gmail.com"
   s.extra_rdoc_files = [
@@ -28,13 +28,14 @@ Gem::Specification.new do |s|
     "init.rb",
     "lib/modalsettings.rb",
     "lib/settings.rb",
+    "modalsettings.gemspec",
     "test/helper.rb",
     "test/test_settings.rb"
   ]
   s.homepage = "http://github.com/jgoizueta/modalsettings"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.21"
+  s.rubygems_version = "1.8.24"
   s.summary = "Settings container"
 
   if s.respond_to? :specification_version then
